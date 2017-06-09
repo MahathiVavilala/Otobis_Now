@@ -36,8 +36,10 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="About.html">About</a></li>
-					<li><a href="Contact.html">Contact</a></li>
+					<li><a href="busM.html">Bus Management</a></li>
+					<li><a href="route.html">Route management</a></li>
+					<li><a href="schedule.html">Schedule Management</a></li>
+					
 				</ul>
 <ul class="nav navbar-nav navbar-right">
 <li><a href="home.html">Logout</a></li>
@@ -101,36 +103,6 @@
 	<br>
 	<br>
 
-	<!-- Container -->
-	<div class="jumbotron">
-		<center>
-			<form  method = "post" action = "SearchController">
-				<font color="black" size="4"> <label>From</label> <input
-					list="places" name ="src" required /> <datalist id="places">
-
-						<option value="Guntur">
-						<option value="Warangal">
-						<option value="Vijayawada">
-						<option value="Vizag">
-						<option value="Kakinada">
-						<option value="Hyderabad"><input type="submit">
-					</datalist> <label><b>To</b></label> <input list="places" name ="dest"required>
-
-
-					<label><b>Date</b></font></label> <input type="date" id="datepicker"
-					name = "dt"required >
-		</center>
-
-		<div class="clearfix">
-			<center>
-				<button type="submit">
-					<a href="SearchBus.html">Check Availability 
-				</button>
-				</a>
-			</center>
-		</div>
-		</form>
-	</div>
 </body>
 <footer>
 	<span class="glyphicon glyphicon-road"></span>5000Routes

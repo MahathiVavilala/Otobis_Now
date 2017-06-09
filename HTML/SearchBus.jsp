@@ -23,6 +23,13 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
+<%
+String src = request.getParameter("source");
+String dest = request.getParameter("destination");
+
+
+%>
 <body>
 	<div class="container">
 		<nav class="navbar navbar-default">
@@ -51,7 +58,7 @@
 	</div>
 
 	<div class="jumbotron">
-		<form action="/action_page.php" align : left>
+		<form action = "SearchController" method = "post" align : left>
 			<font color="black" size="4"> <b>AC/Non AC</b> <input
 				list="AC/Non AC" required> 
 				<datalist id="AC/Non AC">
@@ -79,7 +86,7 @@
     />
      
     <sql:query var="listBuses"   dataSource="${myDS}">
-        select * from Bus B, BusType BT where B.BusType_ID = BT.BusType_ID and isAC = 1 and Seating_Type = "Non-Sleepe" and Registration_No in (select Registration_No from Schedule S, Route R where S.Route_ID = R.Route_ID and R.Source = "Hyderabad" and R.Destination = "Guntur");
+        select * from Bus B, BusType BT where B.BusType_ID = BT.BusType_ID and Registration_No in (select Registration_No from Schedule S, Route R where S.Route_ID = R.Route_ID and R.Source = "${src}" and R.Destination = "${dest}");
 
     </sql:query>
      
