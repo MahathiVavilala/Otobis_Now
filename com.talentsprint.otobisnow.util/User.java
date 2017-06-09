@@ -67,7 +67,7 @@ public class User {
 
 			ps = con.createStatement();
 			rs = ps.executeQuery(
-					"select * from Customer where Email_Address = '" + email + "' and Password = MD5('" + pass + "')");
+					"select * from Customer where Email_Address = '"+email+"' and Password = MD5('"+pass+"')");
 			//int i = 0;
 			if (rs.next()) {
 				System.out.println(rs.getString(1));
@@ -87,17 +87,19 @@ public class User {
 		java.sql.PreparedStatement ps = null;
 		//ResultSet rs = null;
 		try{
-			//ps=con.prepareStatement("insert into Customer values(?,?,?,?,?;");
-			ps=con.prepareStatement("insert into Customer values(?,?,?,?,MD5(?);");
+			//ps=con.prepareStatement("insert into Customer values(?,?,?,?,?);");
+			ps=con.prepareStatement("insert into Customer values(?,?,?,?,md5(?));");
 			ps.setString(1, firstName);
 			ps.setString(2, lastName);
 			ps.setString(3, mobileNumber);
 			ps.setString(4, email);  
 			ps.setString(5, password); 
 			if(ps.executeUpdate() > 0){
+				System.out.println("Iffff");
 				return true;
 				
 			}
+			System.out.println("Not if");
 			
 		}catch (Exception e) {
 			e.printStackTrace();
