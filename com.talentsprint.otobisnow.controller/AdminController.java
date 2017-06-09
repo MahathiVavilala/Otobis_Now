@@ -48,7 +48,7 @@ public class AdminController extends HttpServlet {
 		AdminDAO admin = new AdminDAO();
 		 if(admin.isAdmin(uname,password)) {
 			  //out.print("true");
-			RequestDispatcher rd = request.getRequestDispatcher("homeAfterLogin.html");
+			RequestDispatcher rd = request.getRequestDispatcher("adminAfterLogin.html");
 			rd.forward(request, response);  
 			
 		} else {

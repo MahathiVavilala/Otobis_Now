@@ -3,6 +3,7 @@ package com.talentsprint.otobisnow.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.talentsprint.otobisnow.bean.BusBean;
 import com.talentsprint.otobisnow.util.Bus;
 import com.talentsprint.otobisnow.util.User;
+
+import sun.util.calendar.BaseCalendar.Date;
 
 /**
  * Servlet implementation class SearchController
@@ -46,14 +50,18 @@ public class SearchController extends HttpServlet {
 
 		String source = request.getParameter("src");
 		String destination = request.getParameter("dest");
+		String date = request.getParameter("dt");
 
-		if (Bus.isBus(source, destination)) {
+		if (BusBean.isBus(source, destination)) {
 			out.println("Exists");
+			request.setAttribute("src", source);
+			request.setAttribute("dest", destination);
+			
 			RequestDispatcher rs = request.getRequestDispatcher("SearchBus.jsp");
 			rs.forward(request, response);
 		} else {
 			out.println("Buses are not available");
-			RequestDispatcher rs = request.getRequestDispatcher("home.html");
+			RequestDispatcher rs = request.getRequestDispatcher("homeAfterLogin.html");
 			rs.include(request, response);
 		}
 	}

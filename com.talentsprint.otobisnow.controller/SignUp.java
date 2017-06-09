@@ -45,8 +45,9 @@ String repeatPassword = request.getParameter("psw-repeat");
 String mobileNumber = request.getParameter("Mobile Number");  
 
 if (User.canAddUser(email, firstName, lastName, password, mobileNumber)) {
-	out.println("Successfully Registered!!");
+	
 	RequestDispatcher rs = request.getRequestDispatcher("home.html");
+	out.println("Successfully Registered!!");
 	rs.forward(request, response);
 } else {
 	out.println("Please enter valid credentials!!");
