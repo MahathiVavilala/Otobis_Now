@@ -1,10 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
-<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <header>
 	<marquee behavior="alternate"> OtobisNow </marquee>
@@ -58,7 +52,8 @@
 					<option value="AC">
 					<option value="Non AC">
 				</datalist> 
-				 
+				<br></br> 
+				<br></br> 
 				<label><b>Seating</b>
 				 </label> 
 				<input list="Seating" required> 
@@ -66,8 +61,8 @@
 
 					<option value="Sleeper">
 					<option value="Non Sleeper">
-				</datalist> <br></br>
-				<center><button type="submit">Search</button></center>
+				</datalist> <br></br> <br></br>
+				<button type="submit">Search</button>
 				</font>
 		</form>
 		
@@ -79,13 +74,12 @@
     />
      
     <sql:query var="listBuses"   dataSource="${myDS}">
-        select * from Bus B, BusType BT where B.BusType_ID = BT.BusType_ID and isAC = 1 and Seating_Type = "Non-Sleepe" and Registration_No in (select Registration_No from Schedule S, Route R where S.Route_ID = R.Route_ID and R.Source = "Hyderabad" and R.Destination = "Guntur");
-
+        select Registration_No, isAC, Seating_Type, Seatind_Capacity from Bus B, BusType BT where B.BusType_ID = BT.BusType_ID and isAC(select Registration_No from Schedule S, Route R where S.Route_ID = R.Route_ID and R.Source = "Hyderabad" and R.Destination = "Guntur") ;
     </sql:query>
      
     <div align="center">
         <table border="1" cellpadding="5">
-            <caption><h2>List of Buses</h2></caption>
+            <caption><h2>List of users</h2></caption>
             <tr>
                 <th>Registration No</th>
                 <th>Ac/NonAC</th>
@@ -94,7 +88,7 @@
             </tr>
             <c:forEach var="bus" items="${listBuses.rows}">
                 <tr>
-                    <td><c:out value="${bus.Registration_No}" /></td>
+                    <td><c:out value="${bus.Reagistration_No}" /></td>
                     <td><c:out value="${bus.isAC}" /></td>
                     <td><c:out value="${bus.Seating_Type}" /></td>
                     <td><c:out value="${bus.Seatind_Capacity}" /></td>
