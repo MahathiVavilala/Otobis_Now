@@ -51,12 +51,10 @@ public class SearchController extends HttpServlet {
 		String source = request.getParameter("src");
 		String destination = request.getParameter("dest");
 		String date = request.getParameter("dt");
-
 		if (BusBean.isBus(source, destination)) {
 			out.println("Exists");
 			request.setAttribute("src", source);
-			request.setAttribute("dest", destination);
-			
+			request.setAttribute("dest", destination);			
 			RequestDispatcher rs = request.getRequestDispatcher("SearchBus.jsp");
 			rs.forward(request, response);
 		} else {
