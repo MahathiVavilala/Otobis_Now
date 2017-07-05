@@ -1,6 +1,7 @@
 package com.talentsprint.otobisnow.util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -74,18 +75,25 @@ public class Bus {
 	public static boolean canAddBus (String Registration_No, String BusType_ID, int isAC, String Seating_Type, int Seatind_Capacity ){
 		Connection con = MysqlConnection.getConnection();
 		System.out.println("Connection Established");
-		java.sql.PreparedStatement ps = null;
+		PreparedStatement ps = null;
+		PreparedStatement ps1 = null;
 		//ResultSet rs = null;
 		try{
 			//ps=con.prepareStatement("insert into Customer values(?,?,?,?,?);");
-			ps=con.prepareStatement("insert into Customer values(?,?,?,?,?);");
-			ps.setString(1, Registration_No);
-			ps.setString(2, BusType_ID);
-			ps.setInt(3, isAC);
-			ps.setString(4, Seating_Type);  
-			ps.setInt(5, Seatind_Capacity); 
+			ps=con.prepareStatement("insert into BusType values(?,?,?,?);");
+			ps.setString(1, BusType_ID);
+			ps.setInt(2, isAC);
+			ps.setString(3, Seating_Type);  
+			ps.setInt(4, Seatind_Capacity);
+			
 			if(ps.executeUpdate() > 0){
 				System.out.println("Iffff");
+				ps1=con.prepareStatement("insert into Bus values(?,?);");
+				ps1.setString(1, Registration_No);
+				ps1.setString(2, BusType_ID);
+				if(ps1.executeUpdate() > 0){
+					System.out.println("Inner If");
+				}
 				return true;
 				
 			}
