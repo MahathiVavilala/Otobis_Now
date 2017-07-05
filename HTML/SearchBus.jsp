@@ -14,7 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/commonCSS.css">
+
+	<link rel="stylesheet" href="css/commonCSS.css">
 <style>
 table {
     width:100%;
@@ -44,11 +45,8 @@ table#t01 th {
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<%
-	String src = request.getParameter("source");
-	String dest = request.getParameter("destination");
-%>
-<body>
+
+<body onload="applyFilter()">
 	<div class="container">
 		<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -77,68 +75,61 @@ table#t01 th {
 
 	<div class="jumbotron1">
 	<h3><center>Filters</center></h3>
-		<form action="SearchController" method="post" align : left>
-			<font color="black" size="4"> <center><b>AC/Non AC</b> <input
-				list="AC/Non AC" required> <datalist id="AC/Non AC">
-				<option value="AC">
-				<option value="Non AC">
-				</datalist> <label><b>Seating</b> </label> <input list="Seating" required>
-				<datalist id="Seating">
-
-				<option value="Sleeper">
-				<option value="Non Sleeper">
-				</datalist> <br></br>
-				<center>
-					<button type="submit">Search</button>
+		
+	
+		<% 
+			String source = (String)request.getAttribute("src"); 
+			String dest = (String)request.getAttribute("dest");
+		%>
+		
+		<input type="hidden" id="source" value="<%= source %>">
+		<input type="hidden" id="dest" value="<%= dest %>">
+		<font color="black" size="4"> <b>AC/Non AC</b>  
+				<select id="ACType">
+				<option value="">Select a type</option>
+				<option value="1">AC</option>
+				<option value="0"> NonAC</option>
+				</select> <label><b>Seating</b> </label>
+				<select id="Seating">
+<option value="">Select a type</option>
+				<option value="Sleeper">Sleeper</option>
+				<option value="NonSleeper">NonSleeper</option>
+				</select> <br></br>
+				
+					<button type="submit" onclick="applyFilter()">Apply Filter	</button>
 				</center>
 
 			</font>
 		</form>
 	</div>
 <br>
-	<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/OtobisNow" user="root"
-		password="@rtemis143" />
-
-	<sql:query var="listBuses" dataSource="${myDS}">
-        select * from Bus B, BusType BT where B.BusType_ID = BT.BusType_ID and Registration_No in (select Registration_No from Schedule S, Route R where S.Route_ID = R.Route_ID and R.Source = "${src}" and R.Destination = "${dest}");
-
-    </sql:query>
+<div id="results"></div>
 	
-		<div align="center">
-		<div class="jumbotron1">
-			<caption>
-					<h2><center>List of Buses</center></h2>
-				</caption><table  >
-				
-				<tr>
-					<th><center>Registration No</center></th>
-					<th>Ac/NonAC</th>
-					<th>Seating Type</th>
-					<th>Seating Capacity</th>
-					<th> Seating Plan </th>
-				</tr>
-				<c:forEach var="bus" items="${listBuses.rows}">
-					<tr>
-						<td><center><c:out value="${bus.Registration_No}" /></center></td>
-						<td><center><c:out value="${bus.isAC}" /></center></td>
-						<td><center><c:out value="${bus.Seating_Type}" /></center></td>
-						<td><center><c:out value="${bus.Seatind_Capacity}" /></center></td>
-						<td><center><a href="SeatArrangement.html<c:out value='${book.id}' />">View Seats</a></center> </td>
-						
-                       <!--
-                       <button type="button" class="btn btn-success btn-block" onclick = "SeatArrangement.html<c:out value='${bus.Registration_No}' />">View Seats</button> </td> 
-                       <a href="SeatArrangement.html<c:out value='${book.id}' />">View Seats</a> </td>
-					--></center></tr>
-				</c:forEach>
-			</table>
-		</div>
-</div>
 	
-
+<script>
+	function applyFilter() {
+		var filter1 = document.getElementById("ACType");
+		var filter2 = document.getElementById("Seating");
+		var src = document.getElementById("source").value;
+		var dest = document.getElementById("dest").value;
+		var str1 = filter1.options[filter1.selectedIndex].value;
+		var str2 = filter2.options[filter2.selectedIndex].value;
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if(this.readyState == 4 && this.status == 200) {
+				var resp = this.responseText;
+			
+				document.getElementById("results").innerHTML = resp;
+			}
+		};
+	
+		xhttp.open("GET","BusFilter.jsp?p1="+str1+"&p2="+str2+"&p3="+src+"&p4="+dest,true);
+		xhttp.send();
+	}
+</script>
 </body>
 <footer> <span class="glyphicon glyphicon-road"></span>5000Routes
-<tb>&ensp;&ensp; <span class="glyphicon glyphicon-user"></span>500
-Operators</tb> </footer>
+<tb>&ensp;&ensp; <span class="glyphicon glyphicon-user"></span>500Operators</tb> </footer>
 </html>
 
