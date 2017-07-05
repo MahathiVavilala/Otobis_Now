@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <header>
-	
 	<marquee behavior="alternate">OtobisNow</marquee>
 </header>
 <head>
@@ -28,8 +27,6 @@
             input.setCustomValidity('to and from must not be the same');
         }
     }
-
-
    </script>
 </head>
 
@@ -54,10 +51,8 @@
 					<li><a href="Contact.html">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				<li><a href = "AdminFront.html">AdminLogin</a></li>
-
+					<li><a href="AdminFront.html">AdminLogin</a></li>
 					<li><a href="" data-toggle="modal" data-target="#myModal">UserLogin</a></li>
-				
 				</ul>
 				<div class="modal fade" id="myModal" role="dialog">
 					<div class="modal-dialog">
@@ -69,15 +64,12 @@
 								</h4>
 							</div>
 							<div class="modal-body">
-								<form  action="Login" method="post">
-
+								<form action="Login" method="post">
 									<div class="form-group">
+										<label><b><span class="glyphicon glyphicon-user"></span>Email</b></label>
+										<input type="text" class="form-control" name="email"
+											pattern="[^ @]*@[^ @]*" placeholder="abcdef@example.com">
 
-		
-											<label><b><span class="glyphicon glyphicon-user"></span>Email</b></label>
-											<input type="text" class="form-control" name="email"
-												pattern="[^ @]*@[^ @]*" placeholder="abcdef@example.com">
-										
 									</div>
 									<div class="form-group">
 
@@ -85,24 +77,23 @@
 												class="glyphicon glyphicon-eye-open"></span>Password</b></label> <input
 											type="password" placeholder="Enter Password" name="pass"
 											required>
-
 									</div>
 									<div class="checkbox">
-										<label><input type="checkbox" value="" checked>Remember
-											me</label>
+										<label>
+										    <input type="checkbox" value="" checked>Remember me
+										</label>
 									</div>
-									<button type="submit" id = "CustomerEntry" class="btn btn-success btn-block" onlick="">
-										<span class="glyphicon glyphicon-off"
-											></span> Login
+									<button type="submit" id="CustomerEntry"
+										class="btn btn-success btn-block" onlick="">
+										<span class="glyphicon glyphicon-off"></span>
+										Login
 									</button>
 								</form>
-
-
 							</div>
 							<div class="modal-footer">
 								<button type="submit"
 									class="btn btn-danger btn-default pull-left"
-									data-dismiss="modal" onclick ="" >
+									data-dismiss="modal" onclick="">
 									<span class="glyphicon glyphicon-remove"></span> Cancel
 								</button>
 								<p>
@@ -114,19 +105,17 @@
 							</div>
 						</div>
 					</div>
-					<!--  </form> -->
+				
 				</div>
-			</nav> </div> 
-	
-
-			<script>
+		</nav>
+	</div>
+	<script>
 $(document).ready(function(){
     $("#myBtn").click(fsunction(){
         $("#myModal").modal();
     });
 });
 </script>
-	
 	<!--Image in Home-->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
@@ -181,26 +170,29 @@ $(document).ready(function(){
 	<div class="jumbotron">
 		<center>
 			<form action="/action_page.php">
-				<font color="black" size="4"> <label>From</label> <input
-					list="places" id="from" required /> <datalist id="places">
-
+				<font color="black" size="4"> 
+				<label>From</label> 
+				<input list="places" id="from" required /> 
+				<datalist id="places">
 						<option value="Guntur">
 						<option value="Warangal">
 						<option value="Vijayawada">
 						<option value="Vizag">
 						<option value="Kakinada">
 						<option value="Hyderabad">
-					</datalist> <label><b>To</b></label> <input list="places"  id="to" required
-					oninput="check(this)"/> <label><b>Date</b></font></label> <input
-					type="date" id="datepicker" required/>
+					</datalist>
+					 <label><b>To</b></label> 
+					 <input list="places" id="to" required oninput="check(this)" /> 
+					 <label><b>Date</b></font></label> 
+					 <input	type="date" id="datepicker" required />
 		</center>
 
 		<div class="clearfix">
 			<center>
 				<button type="submit">
-					<a href="SearchBus.jsp">Check Availability 
+					<a href="SearchBus.jsp">Check Availability </a>
 				</button>
-				</a>
+				
 			</center>
 		</div>
 		</form>
@@ -208,8 +200,7 @@ $(document).ready(function(){
 </body>
 <footer>
 	<span class="glyphicon glyphicon-road"></span>5000Routes
-	<tb>&ensp;&ensp; <span class="glyphicon glyphicon-user"></span>500
-	Operators</tb>
+	<tb>&ensp;&ensp; <span class="glyphicon glyphicon-user"></span>500 Operators</tb>
 </footer>
 </html>
 
