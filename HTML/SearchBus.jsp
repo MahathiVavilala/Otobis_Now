@@ -75,7 +75,7 @@ table#t01 th {
 
 	<div class="jumbotron1">
 	<h3><center>Filters</center></h3>
-		
+		<center> 
 	
 		<% 
 			String source = (String)request.getAttribute("src"); 
@@ -84,19 +84,20 @@ table#t01 th {
 		
 		<input type="hidden" id="source" value="<%= source %>">
 		<input type="hidden" id="dest" value="<%= dest %>">
-		<font color="black" size="4"> <b>AC/Non AC</b>  
-				<select id="ACType">
-				<option value="">Select a type</option>
+		<font color="black" size="4"> <b>AC/Non AC</b> 
+		
+				<select id="ACType" >
+				//<option value="">Select a type</option>
 				<option value="1">AC</option>
 				<option value="0"> NonAC</option>
 				</select> <label><b>Seating</b> </label>
 				<select id="Seating">
-<option value="">Select a type</option>
+//<option value="">Select a type</option>
 				<option value="Sleeper">Sleeper</option>
 				<option value="NonSleeper">NonSleeper</option>
 				</select> <br></br>
-				
-					<button type="submit" onclick="applyFilter()">Apply Filter	</button>
+				</center>
+					<center><button type="submit" width = "10" onclick="applyFilter()">Apply Filter	</button></center>
 				</center>
 
 			</font>
