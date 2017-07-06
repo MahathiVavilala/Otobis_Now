@@ -36,9 +36,9 @@ pageEncoding="ISO-8859-1"%>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					
-					<li><a href="busM.jsp">Bus Management</a></li>
-					<li><a href="route.jsp">Route management</a></li>
-					<li><a href="schedule.jsp">Schedule Management</a></li>
+					<li class="active"><a href="busManagement.jsp">Bus management</a></li>
+              <li><a href="RouteManagement.jsp">Route management</a></li>
+              <li><a href="ScheduleManagement.jsp">Schedule management</a></li>
 					
 				</ul>
 <ul class="nav navbar-nav navbar-right">
@@ -50,13 +50,13 @@ pageEncoding="ISO-8859-1"%>
 
 <form name="adding the bus details" action="AddBusController" method="post">
 <h1><center>Adding a Bus</center></h1>
-<div class  = jumbotron1>
+<div class  = jumbotron>
 RegistrationNo: <input type="text" name="RegistrationNo"><br>
 BusTypeID: <input type="text" name="BusID"><br>
 isAC: <input type="text" name="isAC"><br>
 SeatingType: <input type="text" name="SeatingType"><br>
 SeatingCapacity: <input type="text" name="SeatingCapacity"><br>
-<button type = "submit" value = "submit" name = "Add">Add
+<button type = "submit" value = "submit" name = "Add">Add Bus
 </button>
 </div>
 </form>

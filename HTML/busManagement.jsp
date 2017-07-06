@@ -39,13 +39,14 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="busManagement.jsp">Bus management</a></li>
-              <li><a href="routeManagement.jsp">Route management</a></li>
+              <li><a href="RouteManagement.jsp">Route management</a></li>
+              <li><a href="ScheduleManagement.jsp">Schedule management</a></li>
             </ul>
             </div>
             </nav>
             </div>
 	
-		
+		<div class = jumbotron1>
 		     <sql:setDataSource
         var="myDS"
         driver="com.mysql.jdbc.Driver"
@@ -62,27 +63,30 @@
     <caption><h2>List of Buses</h2></caption>
         <table border="1" cellpadding="5" width = 40% height = 40%>
             <tr>
-                <th>RegistrationNo</th>
-                <th>BusTypeID</th>
+                <th><center>RegistrationNo</center></th>
+                <th><center>BusTypeID</center></th>
                           </tr>
             <c:forEach var="bus" items="${listBuses.rows}">
                 <tr>
-                    <td><c:out value="${bus.Registration_No}" /></td>
-                    <td><c:out value="${bus.BusType_ID}" /></td>
+                    <td><center><c:out value="${bus.Registration_No}" /></center></td>
+                    <td><center><c:out value="${bus.BusType_ID}" /></center></td>
                     
                 </tr>
             </c:forEach>
         </table>
     </div> 
 		
-		</div>
 		
-</body>
+		
+
 <br></br>
 <center>
-      <button type="submit" onclick="location.href='addbus.jsp'">Add Bus</button>
-	<button type="submit"><a href = "addbus.jsp">Delete bus</a></button></center>
+      <button type="submit" class = "signupbtn" onclick="location.href='addbus.jsp'">Add Bus</button>
+	<button type="submit"  class = "signupbtn" onclick = "location.href='DeleteBus.jsp'">Delete bus</a></button></center>
+	</div>
+	</body>
 <footer>
+
 	<span class="glyphicon glyphicon-road"></span>5000Routes
 	<tb>&ensp;&ensp; <span class="glyphicon glyphicon-user"></span>500
 	Operators</tb>
