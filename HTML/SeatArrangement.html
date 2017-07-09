@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <header>	
@@ -45,23 +44,35 @@
 
 					Total: <b>₹<span id="total">0</span></b>
 
-					<form action="/purchase" method="POST">
+
+					<form action="purchase1" method="post">
 						<!-- Note that the amount is in paise = 50 INR -->
-						<script src="https://checkout.razorpay.com/v1/checkout.js"
-							data-key="rzp_test_L2UOp30GXTjdHI" data-amount="5000"
+						<script id="razorpay" src="https://checkout.razorpay.com/v1/checkout.js"
+							data-key="rzp_test_L2UOp30GXTjdHI" data-amount="10000"
 							data-buttontext="Pay with Razorpay" data-name="Otobis Now"
 							data-description="Bus Tickets" data-image="Images/logo.jpg"
 							data-prefill.name="Mahathi Vavilala"
 							data-prefill.email="mahathivavilala97@gmail.com"
-							data-theme.color="#F37254"></script>
+							data-theme.color="#F37254">
+						
+						</script>
 						<input type="hidden" value="Hidden Element" name="hidden">
 					</form>
+					
 				</div>
 				<div class="clear"></div>
 			</div>
 			<script>
+			//var amount = $('#razorpay').attr("data-amount");
+			//print filename out to screen.
+		//	document.write(amount);
+			//var amount = document.findElementById("#razorpay").getAttribute("data-amount");
+			var amount = document
+  .querySelector('script[id="razorpay"][data-amount]')
+  .getAttribute('data-amount');
+			//$('#razorpay').attr("data-amount",'900000')
+			alert(amount);
 				var firstSeatLabel = 1;
-
 				$(document)
 						.ready(
 								function() {
@@ -74,7 +85,6 @@
 																'ee_ee',
 																'ee_ee',
 																'ee_ee',
-
 																'eeeee', ],
 														seats : {
 															f : {
@@ -87,7 +97,6 @@
 																classes : 'economy-class', //your custom css class
 																category : 'General'
 															}
-
 														},
 														naming : {
 															top : false,
@@ -131,44 +140,28 @@
 																				'cart-item-'
 																						+ this.settings.id)
 																		.data(
-																				'seatId',
+																			'seatId',
 																				this.settings.id)
 																		.appendTo(
 																				$cart);
-
 																/*
 																 * Lets update the counter and total
 																 *
 																 * .find function will not find the current seat, because it will change its stauts only after return
 																 * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
 																 */
-																$counter
-																		.text(sc
-																				.find('selected').length + 1);
-																$total
-																		.text(recalculateTotal(sc)
-																				+ this
-																						.data().price);
-
+																$counter.text(sc.find('selected').length + 1);
+																$total.text(recalculateTotal(sc)+ this.data().price);
 																return 'selected';
-															} else if (this
-																	.status() == 'selected') {
+															} else if (this.status() == 'selected') {
 																//update the counter
-																$counter
-																		.text(sc
-																				.find('selected').length - 1);
+																$counter.text(sc.find('selected').length - 1);
 																//and total
-																$total
-																		.text(recalculateTotal(sc)
-																				- this
-																						.data().price);
-
+																$total.text(recalculateTotal(sc)- this.data().price);
+																
 																//remove the item from our cart
-																$(
-																		'#cart-item-'
-																				+ this.settings.id)
+																$('#cart-item-'+ this.settings.id)
 																		.remove();
-
 																//seat has been vacated
 																return 'available';
 															} else if (this
@@ -181,7 +174,6 @@
 															}
 														}
 													});
-
 									//this will handle "[cancel]" link clicks
 									$('#selected-seats')
 											.on(
@@ -198,21 +190,16 @@
 																						'seatId'))
 																.click();
 													});
-
 									//let's pretend some seats have already been booked
 									sc.get([ '1_2', '4_1', '7_1', '7_2' ])
 											.status('unavailable');
-
 								});
-
 				function recalculateTotal(sc) {
 					var total = 0;
-
 					//basically find every selected seat and sum its price
 					sc.find('selected').each(function() {
 						total += this.data().price;
 					});
-
 					return total;
 				}
 			</script>

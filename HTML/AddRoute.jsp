@@ -17,7 +17,7 @@ pageEncoding="ISO-8859-1"%>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Adding New Bus</title>
-<link rel="stylesheet" href="commonCSS.css">
+<link rel="stylesheet" href="css/commonCSS.css">
 </head>
 <body>
 <div class="container">
