@@ -42,7 +42,7 @@ to {
 }
 
 input[type=text], input[type=password] {
-	width: 30%;
+	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -53,11 +53,11 @@ input[type=text], input[type=password] {
 button {
 	background-color: #4CAF50;
 	color: white;
-	padding: 14px 20px;
+	padding: 10px 18px;
 	margin: 8px 0;
 	border: none;
 	cursor: pointer;
-	width: 30%;
+	width: auto;
 	border-radius: 15px;
 }
 
@@ -118,8 +118,20 @@ footer {
 	text-align: center;
 }
 
-input[type=text], select, textarea {
+select {
 	width: 30%;
+	/*padding: 12px ;*/
+	border: 1px solid #ccc;
+	display: inline-block;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 16px;
+	text-align: left
+}
+
+input[type=text],textarea {
+	width: 100%;
 	/*padding: 12px ;*/
 	border: 1px solid #ccc;
 	display: inline-block;
@@ -137,6 +149,8 @@ input[type=text], select, textarea {
 	margin-right: 50px;
 	margin-left: 50px;
 }
+
+
 /*login*/
 modal-header, h4, .close {
 	background-color: #5cb85c;
@@ -148,8 +162,9 @@ modal-header, h4, .close {
 
 .modal-footer {
 	background-color: #f9f9f9;
-}
+
 
 .modal-body {
 	padding: 40px 50px;
 }
+
